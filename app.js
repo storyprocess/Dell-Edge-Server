@@ -17,6 +17,8 @@ const urbanmobilityRouter = require('./routes/urbanmobility');
 var gtRouter = require('./routes/guided_tour');
 const solutionsRouter = require('./routes/solutions');
 const graphicsRouter = require('./routes/solution_graphics');
+const useCaseListRouter = require('./routes/use_case_list');
+const solutionDetailsRouter = require('./routes/solution_details');
 
 const PORT = process.env.PORT || 5001; // 5001-> city, 5000 -> factory
 
@@ -34,17 +36,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/useCases', useCaseRouter);
-app.use('/section', sectionRouter);
-app.use('/config', configRouter);
-app.use('/use_case_stories', useCaseStoryRouter);
-app.use('/um', umRouter);
-app.use('/urbanmobility', urbanmobilityRouter);
-app.use('/guided_tour', gtRouter);
-app.use('/solutions', solutionsRouter);
-app.use('/solution_graphics', graphicsRouter);
+app.use('/city/', indexRouter);
+app.use('/city/users', usersRouter);
+app.use('/city/useCases', useCaseRouter);
+app.use('/city/section', sectionRouter);
+app.use('/city/config', configRouter);
+app.use('/city/use_case_stories', useCaseStoryRouter);
+app.use('/city/um', umRouter);
+app.use('/city/urbanmobility', urbanmobilityRouter);
+app.use('/city/guided_tour', gtRouter);
+app.use('/city/solutions', solutionsRouter);
+app.use('/city/use_case_list', useCaseListRouter);
+app.use('/city/solution_graphics', graphicsRouter);
+app.use('/city/solution_details', solutionDetailsRouter);
 
 
 
@@ -52,12 +56,12 @@ app.use('/solution_graphics', graphicsRouter);
 app.use(cors());
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
