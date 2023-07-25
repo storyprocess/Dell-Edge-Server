@@ -7,9 +7,9 @@ var database = require('../database');
 
 router.use(cors());
 
-router.get("/", function (request, response, next) {
+router.get("/:db", function (request, response, next) {
 
-    var query = `SELECT use_case_id, short_label FROM use_case_stories WHERE step_id = ${request.query.step_id || 1} and element = ${request.query.element || 0} order by use_case_id;`;
+    var query = `USE ${request.params.db}; SELECT use_case_id, short_label FROM use_case_stories WHERE step_id = ${request.query.step_id || 1} and element = ${request.query.element || 0} order by use_case_id;`;
 
     database.query(query, function (error, data) {    // data -> reponse to query
 

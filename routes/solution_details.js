@@ -7,9 +7,9 @@ var database = require('../database');
 
 router.use(cors());
 
-router.get("/:id", function(request, response, next){
+router.get("/:db/:id", function(request, response, next){
 
-	var query = `SELECT * FROM solutions WHERE id=${request.params.id}`;
+	var query = `USE ${request.params.db}; SELECT * FROM solutions WHERE id=${request.params.id}`;
 
 	database.query(query, function(error, data){    // data -> reponse to query
 

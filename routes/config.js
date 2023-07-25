@@ -7,9 +7,9 @@ var database = require('../database');
 
 router.use(cors());
 
-router.get("/", function(request, response, next){
+router.get("/:db", function(request, response, next){
 
-	var query = "SELECT * FROM config_settings ORDER BY ID";
+	var query = `USE ${request.params.db}; SELECT * FROM config_settings ORDER BY ID`;
 
 	database.query(query, function(error, data){    // data -> reponse to query
 

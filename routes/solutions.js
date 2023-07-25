@@ -7,9 +7,9 @@ var database = require('../database');
 
 router.use(cors());
 
-router.get("/", function (request, response, next) {
+router.get("/:db", function (request, response, next) {
 
-	var query = "SELECT * FROM solutions ORDER BY id";
+	var query = `USE ${request.params.db}; SELECT * FROM solutions ORDER BY id`;
 	console.log(request.query.type)
 	if (request.query.type) {
 		query = `SELECT * FROM solutions where soln_type = '${request.query.type}' ORDER BY id`;
