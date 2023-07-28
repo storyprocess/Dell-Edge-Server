@@ -36,19 +36,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/city/', indexRouter);
-app.use('/city/users', usersRouter);
-app.use('/city/useCases', useCaseRouter);
-app.use('/city/section', sectionRouter);
-app.use('/city/config', configRouter);
-app.use('/city/use_case_stories', useCaseStoryRouter);
-app.use('/city/um', umRouter);
-app.use('/city/urbanmobility', urbanmobilityRouter);
-app.use('/city/guided_tour', gtRouter);
-app.use('/city/solutions', solutionsRouter);
-app.use('/city/use_case_list', useCaseListRouter);
-app.use('/city/solution_graphics', graphicsRouter);
-app.use('/city/solution_details', solutionDetailsRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/useCases', useCaseRouter);
+app.use('/section', sectionRouter);
+app.use('/config', configRouter);
+app.use('/use_case_stories', useCaseStoryRouter);
+app.use('/um', umRouter);
+app.use('/urbanmobility', urbanmobilityRouter);
+app.use('/guided_tour', gtRouter);
+app.use('/solutions', solutionsRouter);
+app.use('/use_case_list', useCaseListRouter);
+app.use('/solution_graphics', graphicsRouter);
+app.use('/solution_details', solutionDetailsRouter);
 
 
 
@@ -71,6 +71,8 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.listen(PORT);
+app.listen(PORT, ()=>{
+  console.log(`started on port : ${PORT}`)
+});
 
 module.exports = app;
